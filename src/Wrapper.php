@@ -14,22 +14,23 @@ class Wrapper
      * switch the hashid string, supporting arrays.
      *
      * @param int|string|array $matter
+     * @param string           $salt_name
      *
-     * @return int|string|array|null
+     * @return array|int|null|string
      */
-    public static function idSwitch($matter)
+    public static function idSwitch($matter, string $salt_name = "main")
     {
         if (is_numeric($matter)) {
-            return static::idEncode($matter);
+            return static::idEncode($matter, $salt_name);
         }
 
         if (is_string($matter)) {
-            return static::idDecode($matter);
+            return static::idDecode($matter, $salt_name);
         }
 
         if (is_array($matter)) {
             foreach ($matter as $key => $item) {
-                $matter[$key] = static::idSwitch($item);
+                $matter[$key] = static::idSwitch($item, $salt_name);
             }
             return $matter;
         }
@@ -42,11 +43,12 @@ class Wrapper
     /**
      * encode hashid strings, supporting arrays.
      *
-     * @param $matter
+     * @param int|string|array $matter
+     * @param string           $salt_name
      *
-     * @return string|array
+     * @return array|string
      */
-    public static function idEncode($matter)
+    public static function idEncode($matter, string $salt_name = "main")
     {
         if (static::shouldBypassHashidIds()) {
             return "h" . $matter;
@@ -57,12 +59,12 @@ class Wrapper
         }
 
         if (is_numeric($matter)) {
-            return static::encode($matter);
+            return static::encode($matter, $salt_name);
         }
 
         if (is_array($matter)) {
             foreach ($matter as $key => $item) {
-                $matter[$key] = static::idEncode($item);
+                $matter[$key] = static::idEncode($item, $salt_name);
             }
             return $matter;
         }
@@ -76,11 +78,12 @@ class Wrapper
     /**
      * decode hashid strings, supporting arrays.
      *
-     * @param $matter
+     * @param int|string|array $matter
+     * @param string           $salt_name
      *
      * @return int|array|null
      */
-    public static function idDecode($matter)
+    public static function idDecode($matter, string $salt_name = "main")
     {
         if (static::shouldBypassHashidIds()) {
             return (int)Str::after($matter, "h");
@@ -91,12 +94,12 @@ class Wrapper
         }
 
         if (is_string($matter)) {
-            return static::decode($matter)[0];
+            return static::decode($matter, $salt_name)[0];
         }
 
         if (is_array($matter)) {
             foreach ($matter as $key => $item) {
-                $matter[$key] = static::idDecode($item);
+                $matter[$key] = static::idDecode($item, $salt_name);
             }
             return $matter;
         }
