@@ -1,5 +1,5 @@
 {
-    "name": "hashids/hashids",
+    "name": "dutymess/hashids",
     "description": "Generate short, unique, non-sequential ids (like YouTube and Bitly) from numbers",
     "keywords": [
         "bitly",
@@ -22,6 +22,10 @@
         {
             "name": "Vincent Klaiber",
             "email": "hello@doubledip.se"
+        },
+        {
+            "name": "Taha Kamkar",
+            "email": "github.taha@gmail.com"
         }
     ],
     "require": {
@@ -42,6 +46,11 @@
     "extra": {
         "branch-alias": {
             "dev-master": "4.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Hashids\\HashidsServiceProvider"
+            ]
         }
     },
     "autoload": {
@@ -57,3 +66,4 @@
     "minimum-stability": "dev",
     "prefer-stable": true
 }
+
