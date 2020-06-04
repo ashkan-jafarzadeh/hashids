@@ -54,7 +54,7 @@ class Wrapper
             return "h" . $matter;
         }
 
-        if (is_string($matter)) {
+        if (!is_numeric($matter) and is_string($matter)) {
             return $matter;
         }
 

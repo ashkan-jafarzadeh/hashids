@@ -8,7 +8,7 @@ return [
     |
     | These are the salts of encryption. While the helper function use `main`
     | as default salt, you can always pass custom salts too. Just be sure
-    | to define salts in your .env file and keep them unique per app.
+    | to define salts in your .env file and keep them unique over app.
     |
     */
 
