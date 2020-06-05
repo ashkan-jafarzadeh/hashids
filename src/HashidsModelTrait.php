@@ -17,7 +17,7 @@ trait HashidsModelTrait
      */
     public function scopeWithHashids(Builder $builder, $hashids)
     {
-        $builder->whereIn('id', hashid($hashids));
+        $builder->whereIn('id', (array)hashid_number($hashids));
     }
 
 

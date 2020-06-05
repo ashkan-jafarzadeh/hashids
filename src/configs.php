@@ -23,7 +23,7 @@ return [
     |
     | This is useful when you are in debug/development mode and you got sick
     | of constantly converting hashids and ids to each other and see what
-    | is what. You cam bypass mechanism by .env file to see real ids.
+    | is what. You can bypass mechanism by .env file to see real ids.
     |
     */
 
