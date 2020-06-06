@@ -50,6 +50,13 @@ class Wrapper
      */
     public static function idEncode($matter, string $salt_name = "main")
     {
+        if (is_array($matter)) {
+            foreach ($matter as $key => $item) {
+                $matter[$key] = static::idEncode($item, $salt_name);
+            }
+            return $matter;
+        }
+
         if (static::shouldBypassHashidIds()) {
             return "h" . $matter;
         }
@@ -62,15 +69,7 @@ class Wrapper
             return static::encode($matter, $salt_name);
         }
 
-        if (is_array($matter)) {
-            foreach ($matter as $key => $item) {
-                $matter[$key] = static::idEncode($item, $salt_name);
-            }
-            return $matter;
-        }
-
         return null;
-
     }
 
 
@@ -85,6 +84,13 @@ class Wrapper
      */
     public static function idDecode($matter, string $salt_name = "main")
     {
+        if (is_array($matter)) {
+            foreach ($matter as $key => $item) {
+                $matter[$key] = static::idDecode($item, $salt_name);
+            }
+            return $matter;
+        }
+
         if (static::shouldBypassHashidIds()) {
             return (int)Str::after($matter, "h");
         }
@@ -95,13 +101,6 @@ class Wrapper
 
         if (is_string($matter)) {
             return static::decode($matter, $salt_name)[0];
-        }
-
-        if (is_array($matter)) {
-            foreach ($matter as $key => $item) {
-                $matter[$key] = static::idDecode($item, $salt_name);
-            }
-            return $matter;
         }
 
         return null;
