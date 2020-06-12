@@ -92,7 +92,9 @@ class Wrapper
         }
 
         if (static::shouldBypassHashidIds()) {
-            return (int)Str::after($matter, "h");
+            $return = Str::after($matter, "h");
+
+            return is_numeric($return)? $return : null;
         }
 
         if (is_numeric($matter)) {
