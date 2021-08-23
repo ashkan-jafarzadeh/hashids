@@ -1,5 +1,5 @@
 {
-    "name": "dutymess/hashids",
+    "name": "ashkanrimer/hashids",
     "description": "Generate short, unique, non-sequential ids (like YouTube and Bitly) from numbers",
     "keywords": [
         "bitly",
@@ -26,6 +26,10 @@
         {
             "name": "Taha Kamkar",
             "email": "github.taha@gmail.com"
+        },
+        {
+            "name": "Ashkan Jafarzade",
+            "email": "ashkan.jafarzade.dev@gmail.com"
         }
     ],
     "require": {
